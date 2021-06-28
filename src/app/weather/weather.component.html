@@ -1,0 +1,58 @@
+<header>
+  <div class="overlay"></div>
+  <video [muted]="true" autoplay playsinline loop>
+    <source src="../../assets/video/blueSky.mp4" type="video/mp4">
+  </video>
+  <div class="container h-100">
+    <div class="row h-100 text-center align-items-center justify-content-center">
+      <div class="col-sm-7">
+        <div class="card h-100 p-4">
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <h2 class="mb-0">{{currentWeather.name}}, {{currentWeather.weekDay}}</h2> 
+            </div>
+            <div class="col-md-7 text-left">
+              <div class="mt"> <span class="d-block head text-uppercase">Current Weather</span> <span
+                  class="bottom">{{currentWeather.dt * 1000 | date: 'shortTime'}}</span> </div>
+              <div class="mt"> <span class="d-block head">
+                  <h1 class="display-3" [ngStyle]="{'color': currentWeather.main.temp >= 9.5 ? '#f0ad4e' : '#5cb85c'}">
+                    {{currentWeather.main.temp | number:'1.0-0'}}&deg;</h1>
+                </span> </div>
+            </div>
+
+            <div class="col-md-5 text-left">
+              <div class="d-flex justify-content-between border-bottom"><span> Real feal&#174;</span>
+                <span>{{currentWeather.main.feels_like | number:'1.0-0'}}&deg;C</span>
+              </div>
+              <div class="d-flex justify-content-between border-bottom"><span> Wind</span>
+                <span>{{currentWeather.wind.speed * 1.6 | number:'1.0-0'}} km/h</span>
+              </div>
+              <div class="d-flex justify-content-between border-bottom"><span> Humidity</span>
+                <span>{{currentWeather.main.humidity}}%</span>
+              </div>
+              <div class="d-flex justify-content-between border-bottom"><span> Visibility</span>
+                <span>{{currentWeather.visibility * 0.001}} km</span>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="input-group my-2 my-lg-0">
+                <input type="text" class="form-control form-control-lg" placeholder="Enter City" aria-label="Enter City"
+                  name="city" [(ngModel)]="city">
+                <div class="input-group-append">
+                  <button class="btn btn-danger btn-lg" type="submit" (click)="getCurrentWeather()">Search</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<app-daily 
+  [dailyForecast]="dailyForecast" 
+  [hourlyForecast]="hourlyForecast">
+</app-daily>
+

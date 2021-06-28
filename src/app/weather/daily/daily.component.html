@@ -1,0 +1,30 @@
+<div class="row m-3">
+    <div class="col-md-12 mb-3" *ngFor="let day of dailyForecast; let i = index;">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row text-center justify-content-center align-items-center">
+                    <div class="col-md-3">
+                        <h3>{{day.weekDay}}</h3>
+                        <h5 class="text-primary">{{day.dt * 1000| date:'MMM d'}}</h5>
+                    </div>
+                    <div class="col-md-3 justify-content-center">
+                        <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}@2x.png" alt="Weather">
+                        <span>{{day.temp.max | number:'1.0-0'}}&deg;</span><span>/ {{day.temp.min |
+                            number:'1.0-0'}}&deg;</span>
+
+                    </div>
+                    <div class="col-md-3">
+                        <h2><small>Max </small>{{day.temp.max | number:'1.0-0'}}&deg;</h2>
+                        <small>Min {{day.temp.min | number:'1.0-0'}}&deg;</small>
+
+                    </div>
+                    <div class="col-md-3">
+                        <h3>{{day.weather[0].main}}</h3>
+                        <button type="button" class="btn btn-warning" (click)="open(day.dt)" *ngIf="i < 3">Hourly
+                            Forecast</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

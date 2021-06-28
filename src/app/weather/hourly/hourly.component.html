@@ -1,0 +1,21 @@
+
+<h1></h1>
+<table class="table table-sm table text-center">
+    <thead>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col">Weather</th>
+        <th scope="col">Temperature</th>
+        <th scope="col">Real Feal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hourly of hourly">
+        <td class="align-middle">{{hourly.dt * 1000 | date: 'hh'}}h</td>
+        <td class="align-middle"><img src="http://openweathermap.org/img/wn/{{hourly.weather[0].icon}}@2x.png" alt="Weather"></td>
+        <td class="align-middle font-weight-light" [ngStyle]="{'color': hourly.temp >= 9.5 ? '#f0ad4e' : '#5cb85c'}"><h3>{{hourly.temp | number:'1.0-0'}}&deg;</h3></td>
+        <td class="align-middle" [ngStyle]="{'color': hourly.feels_like >= 9.5 ? '#f0ad4e' : '#5cb85c'}"><h3>{{hourly.feels_like | number:'1.0-0'}}&deg;</h3></td>   
+     </tr>      
+    </tbody>
+  </table>
+
